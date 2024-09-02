@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import SideBar from './components/SideBar'
+import MainContent from './components/MainContent'
+import Topbar from './components/TopBar'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <div className="flex flex-col w-screen h-screen">
+        {/* Navbar */}
+        <Topbar />
+        <div className="flex flex-grow my-6">
+          {/* Sidebar detached from the navbar */}
+          <SideBar/>
+          {/* Main content */}
+          <MainContent/>
+        </div>
+      </div>
     </>
   )
 }
