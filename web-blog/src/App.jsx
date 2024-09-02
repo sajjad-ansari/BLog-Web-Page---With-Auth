@@ -1,21 +1,81 @@
-import SideBar from './components/SideBar'
-import MainContent from './components/MainContent'
-import Topbar from './components/TopBar'
+import Navbar from "./components/Global/NavBar"
+import Sidebar from "./components/Global/Sidebar"
+import Home from "./pages/Home"
+import AdminHome from './components/Admin/Home';
+import UserTable from "./components/Admin/UserTable";
+import Register from "./components/Form/Register";
+import Login from "./components/Form/Login";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 function App() {
 
+  const Client = () => {
+    return (
+      <>
+        <Navbar />
+        <Outlet/>
+      </>
+    )
+  }
+
+  const Admin = () => {
+    return (
+      <>
+        <Sidebar />
+        <Outlet/>
+      </>
+    )
+  }
+
+
+  const route = createBrowserRouter([{
+    path: '/',
+    element: <Client />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      }
+    ],
+
+  },
+  {
+    path: '/admin',
+    element: <Admin/>,
+    children:[
+      {
+        path: '',  //Matches /admin
+        element: <AdminHome/>
+      },
+
+      {
+        path: 'user',  //Matches /admin/user
+        element: <UserTable/>
+      }
+
+    ]
+  },
+
+  {
+    path: '/register',
+    element: <Register/>
+       
+  },
+
+  {
+    path: '/login', 
+    element: <Login/>
+  }
+
+  ]);
+
+
+
+
   return (
     <>
-      <div className="flex flex-col w-screen h-screen">
-        {/* Navbar */}
-        <Topbar />
-        <div className="flex flex-grow my-6">
-          {/* Sidebar detached from the navbar */}
-          <SideBar/>
-          {/* Main content */}
-          <MainContent/>
-        </div>
-      </div>
+      <RouterProvider router={route}/>
+
     </>
   )
 }
