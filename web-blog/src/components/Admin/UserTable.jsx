@@ -60,6 +60,11 @@ const UserTable = () => {
                                     width: 110,
                                 },
                                 {
+                                    field: "address",
+                                    headerName: "Address",
+                                    width: 150,
+                                },
+                                {
                                     field: "email",
                                     headerName: "Email",
                                     width: 190,
@@ -69,11 +74,7 @@ const UserTable = () => {
                                     headerName: "Phone",
                                     width: 130,
                                 },
-                                {
-                                    field: "address",
-                                    headerName: "Address",
-                                    width: 150,
-                                },
+                              
                                 {
                                     field: "gender",
                                     headerName: "Gender",
